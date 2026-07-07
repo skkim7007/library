@@ -4,7 +4,7 @@
   <base target="_top">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>국회부산도서관 탐방 기록장</title>
+  <title>국회부산도서관 독서 기록장</title>
   <style>
     :root {
       --bg: #f5f7f2;
@@ -16,6 +16,7 @@
       --red: #e8543f;
       --yellow: #f4b942;
       --blue: #e4f1ff;
+      --soft: #fff8e7;
     }
 
     * { box-sizing: border-box; }
@@ -31,7 +32,7 @@
     header {
       color: white;
       background:
-        linear-gradient(90deg, rgba(9, 35, 32, .94), rgba(9, 35, 32, .42)),
+        linear-gradient(90deg, rgba(9, 35, 32, .94), rgba(9, 35, 32, .48)),
         url("https://busan.nanet.go.kr/mainResources/image/ko/local/main/renew/img_maincard01.jpg") center / cover;
     }
 
@@ -41,17 +42,17 @@
     }
 
     .hero {
-      min-height: 420px;
+      min-height: 430px;
       display: grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.18fr .82fr;
       gap: 28px;
       align-items: end;
-      padding: 38px 0 62px;
+      padding: 38px 0 64px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2.1rem, 6vw, 4.5rem);
+      font-size: clamp(2.05rem, 6vw, 4.45rem);
       line-height: 1.12;
       letter-spacing: 0;
     }
@@ -59,6 +60,11 @@
     h2 {
       margin: 0 0 14px;
       font-size: 1.35rem;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
     }
 
     .kicker {
@@ -70,10 +76,11 @@
     .hero p:last-child {
       max-width: 680px;
       font-size: 1.05rem;
-      color: rgba(255,255,255,.9);
+      color: rgba(255,255,255,.92);
     }
 
-    .visit-box, .card {
+    .visit-box,
+    .card {
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--card);
@@ -94,9 +101,13 @@
       font-weight: 800;
     }
 
-    .visit-box label { color: rgba(255,255,255,.84); }
+    .visit-box label {
+      color: rgba(255,255,255,.86);
+    }
 
-    input, select, textarea {
+    input,
+    select,
+    textarea {
       width: 100%;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -105,13 +116,14 @@
       font: inherit;
     }
 
-    input, select {
+    input,
+    select {
       min-height: 42px;
       padding: 0 12px;
     }
 
     textarea {
-      min-height: 132px;
+      min-height: 120px;
       padding: 12px;
       resize: vertical;
     }
@@ -144,7 +156,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.08fr .92fr;
       gap: 14px;
     }
 
@@ -152,6 +164,8 @@
       padding: 20px;
       min-width: 0;
     }
+
+    .full { grid-column: 1 / -1; }
 
     .missions {
       display: grid;
@@ -202,11 +216,11 @@
     .timer {
       display: grid;
       place-items: center;
-      min-height: 120px;
+      min-height: 116px;
       margin-bottom: 12px;
       border-radius: 8px;
       background: var(--blue);
-      font-size: clamp(2.4rem, 8vw, 4.2rem);
+      font-size: clamp(2.35rem, 8vw, 4rem);
       font-weight: 900;
       font-variant-numeric: tabular-nums;
     }
@@ -226,6 +240,11 @@
       border-color: var(--green);
       background: var(--green);
       color: white;
+    }
+
+    .danger {
+      border-color: #ffd7d2;
+      color: #a83d2e;
     }
 
     .actions {
@@ -253,23 +272,72 @@
       color: white;
     }
 
-    .spaces {
+    .prompt {
+      min-height: 72px;
+      padding: 12px;
+      border-left: 4px solid var(--red);
+      border-radius: 8px;
+      background: var(--soft);
+      font-weight: 800;
+    }
+
+    .book-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
     }
 
-    .space {
-      padding: 12px;
+    .book-card {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: white;
     }
 
-    .space p {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: .92rem;
+    .book-card textarea {
+      min-height: 86px;
+    }
+
+    .quiz-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .quiz-item {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+    }
+
+    .quiz-options {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .quiz-options label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .quiz-options input {
+      width: 18px;
+      min-height: 18px;
+      accent-color: var(--green);
+    }
+
+    .quiz-result {
+      margin: 10px 0 0;
+      color: var(--green);
+      font-weight: 900;
     }
 
     .records {
@@ -287,9 +355,7 @@
       white-space: pre-wrap;
     }
 
-    .record b {
-      color: var(--red);
-    }
+    .record b { color: var(--red); }
 
     .empty {
       grid-column: 1 / -1;
@@ -300,12 +366,25 @@
       text-align: center;
     }
 
-    .full {
-      grid-column: 1 / -1;
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
 
-    @media (max-width: 820px) {
-      .hero, .grid, .info, .missions, .spaces, .records {
+    @media (max-width: 920px) {
+      .hero,
+      .grid,
+      .info,
+      .book-grid,
+      .reflection-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .missions,
+      .records {
         grid-template-columns: 1fr;
       }
     }
@@ -315,19 +394,20 @@
   <header>
     <section class="hero wrap">
       <div>
-        <p class="kicker">동아리 현장 탐방</p>
-        <h1>국회부산도서관 탐방 기록장</h1>
-        <p>자료실, 전시실, 의회자료실, 미디어창작실을 둘러보며 관찰한 장면과 질문을 바로 기록하세요.</p>
+        <p class="kicker">독서동아리 개별 활동</p>
+        <h1>국회부산도서관에서 나만의 한 권을 찾는 기록장</h1>
+        <p>공간 탐방보다 도서 발견과 읽기에 초점을 맞춘 개인 활동지입니다. 후보 도서를 비교하고, 한 권을 골라 읽고, 퀴즈로 확인한 뒤 내 생각을 정리합니다.</p>
       </div>
       <div class="visit-box">
-        <label>팀 이름 <input id="team" placeholder="예: 기록탐험대"></label>
-        <label>탐방 날짜 <input id="date" type="date"></label>
-        <label>오늘의 주제
+        <label>이름 <input id="name" placeholder="예: 김민서"></label>
+        <label>활동 날짜 <input id="date" type="date"></label>
+        <label>읽고 싶은 주제
           <select id="theme">
-            <option>민주주의와 의회정보</option>
-            <option>도서관 공간 디자인</option>
+            <option>민주주의와 시민</option>
+            <option>부산과 지역사회</option>
             <option>기록과 아카이브</option>
-            <option>AI 시대의 정보 탐색</option>
+            <option>과학·AI·미래</option>
+            <option>문학과 삶</option>
           </select>
         </label>
       </div>
@@ -336,147 +416,211 @@
 
   <main class="wrap">
     <section class="info">
+      <div><b>장소</b>국회부산도서관</div>
       <div><b>주소</b>부산광역시 강서구 명지국제1로 161</div>
-      <div><b>참관</b>평일 10:00 / 14:00, 사전 신청 권장</div>
-      <div><b>공간</b>1층 자료·전시, 2층 의회·주제자료</div>
-      <div><b>태도</b>조용히, 촬영 전 확인, 열람자 배려</div>
+      <div><b>오늘의 목표</b>후보 3권 중 최종 1권 선택</div>
+      <div><b>활동 방식</b>개별 탐색, 개별 기록, 퀴즈 확인</div>
     </section>
 
     <section class="grid">
       <article class="card">
-        <h2 id="progressText">탐방 미션 0 / 8</h2>
+        <h2 id="progressText">독서 미션 0 / 8</h2>
         <div class="bar"><span id="bar"></span></div>
         <div class="missions" id="missions"></div>
       </article>
 
       <article class="card">
-        <h2>탐방 타이머</h2>
-        <div class="timer" id="timer">45:00</div>
+        <h2>집중 독서 타이머</h2>
+        <div class="timer" id="timer">25:00</div>
         <div class="actions">
           <button class="primary" onclick="startTimer()">시작</button>
           <button onclick="pauseTimer()">정지</button>
           <button onclick="resetTimer()">초기화</button>
         </div>
-        <p id="prompt">관찰 질문: 이 도서관이 부산에 있다는 점은 어떤 의미가 있나요?</p>
-        <button onclick="newPrompt()">관찰 질문 뽑기</button>
+        <p class="prompt" id="prompt">읽기 질문: 이 책의 제목은 어떤 궁금증을 만들나요?</p>
+        <button onclick="newPrompt()">읽기 질문 뽑기</button>
       </article>
 
-      <article class="card">
-        <h2>공간 탐색</h2>
-        <div class="tabs">
-          <button class="tab active" onclick="showFloor('one', this)">1층</button>
-          <button class="tab" onclick="showFloor('two', this)">2층</button>
+      <article class="card full">
+        <h2>후보 도서 3권 비교</h2>
+        <div class="book-grid">
+          <div class="book-card">
+            <h3>후보 1</h3>
+            <input id="book1Title" placeholder="책 제목">
+            <input id="book1Author" placeholder="저자">
+            <input id="book1Place" placeholder="서가 위치 또는 청구기호">
+            <textarea id="book1Reason" placeholder="이 책이 눈에 들어온 이유"></textarea>
+          </div>
+          <div class="book-card">
+            <h3>후보 2</h3>
+            <input id="book2Title" placeholder="책 제목">
+            <input id="book2Author" placeholder="저자">
+            <input id="book2Place" placeholder="서가 위치 또는 청구기호">
+            <textarea id="book2Reason" placeholder="이 책이 눈에 들어온 이유"></textarea>
+          </div>
+          <div class="book-card">
+            <h3>후보 3</h3>
+            <input id="book3Title" placeholder="책 제목">
+            <input id="book3Author" placeholder="저자">
+            <input id="book3Place" placeholder="서가 위치 또는 청구기호">
+            <textarea id="book3Reason" placeholder="이 책이 눈에 들어온 이유"></textarea>
+          </div>
         </div>
-        <div class="spaces" id="spaces"></div>
       </article>
 
       <article class="card">
-        <h2>현장 기록</h2>
+        <h2>최종 선택 도서</h2>
+        <label>내가 고른 책
+          <input id="finalBook" placeholder="최종 선택한 책 제목">
+        </label>
+        <label>선택 이유
+          <textarea id="finalReason" placeholder="세 권 중 이 책을 고른 결정적인 이유를 적어보세요."></textarea>
+        </label>
+        <label>친구에게 추천한다면
+          <textarea id="recommend" placeholder="이 책을 어떤 친구에게 추천하고 싶은가요?"></textarea>
+        </label>
+      </article>
+
+      <article class="card">
+        <h2>독서 메모</h2>
         <div class="tabs">
-          <button class="tab active" onclick="setNoteType('관찰', this)">관찰</button>
+          <button class="tab active" onclick="setNoteType('인상 깊은 문장', this)">문장</button>
+          <button class="tab" onclick="setNoteType('내 생각', this)">생각</button>
           <button class="tab" onclick="setNoteType('질문', this)">질문</button>
-          <button class="tab" onclick="setNoteType('인용', this)">인용</button>
-          <button class="tab" onclick="setNoteType('아이디어', this)">아이디어</button>
+          <button class="tab" onclick="setNoteType('추천 포인트', this)">추천</button>
         </div>
-        <textarea id="note" placeholder="인상 깊은 공간, 발견한 자료, 새로 생긴 질문을 적어보세요."></textarea>
+        <textarea id="note" placeholder="읽으면서 붙잡고 싶은 문장, 생각, 질문을 적어보세요."></textarea>
         <div class="actions">
-          <button class="primary" onclick="saveNote()">기록 저장</button>
+          <button class="primary" onclick="saveNote()">메모 저장</button>
           <button onclick="downloadReport()">기록 다운로드</button>
-          <button onclick="clearAll()">초기화</button>
+          <button class="danger" onclick="clearAll()">초기화</button>
         </div>
       </article>
 
       <article class="card full">
-        <h2>우리 팀 탐방 아카이브</h2>
+        <h2>독서동아리 퀴즈</h2>
+        <div class="quiz-list" id="quiz"></div>
+        <div class="actions" style="margin-top:12px">
+          <button class="primary" onclick="checkQuiz()">퀴즈 채점</button>
+          <button onclick="resetQuiz()">퀴즈 다시 풀기</button>
+        </div>
+        <p class="quiz-result" id="quizResult"></p>
+      </article>
+
+      <article class="card full">
+        <h2>저장한 독서 메모</h2>
         <div class="records" id="records"></div>
       </article>
 
       <article class="card full">
-        <h2>탐방 후 정리</h2>
-        <label>오늘 찾은 가장 의미 있는 자료
-          <textarea id="best" placeholder="자료명, 위치, 의미를 함께 적어보세요."></textarea>
-        </label>
-        <label>도서관이 지역사회에 주는 역할
-          <textarea id="role" placeholder="시민, 학생, 연구자 관점에서 생각해보세요."></textarea>
-        </label>
-        <label>다음 탐방에서 확인할 질문
-          <textarea id="next" placeholder="추가로 조사하고 싶은 질문을 남겨보세요."></textarea>
-        </label>
+        <h2>개별 활동 마무리</h2>
+        <div class="reflection-grid">
+          <label>오늘 책에서 얻은 한 가지
+            <textarea id="learned" placeholder="새로 알게 된 내용이나 관점을 적어보세요."></textarea>
+          </label>
+          <label>내 삶이나 학교와 연결되는 점
+            <textarea id="connection" placeholder="책 내용이 나와 어떤 관계가 있는지 적어보세요."></textarea>
+          </label>
+          <label>동아리에서 나누고 싶은 질문
+            <textarea id="shareQuestion" placeholder="친구들과 토론하고 싶은 질문을 적어보세요."></textarea>
+          </label>
+        </div>
       </article>
     </section>
   </main>
 
   <script>
-    const storageKey = "busan-library-appscript-log";
-    const missions = [
-      ["입구와 안내 관찰", "처음 방문한 사람이 길을 찾기 쉬운지 확인하기"],
-      ["통합안내데스크 기록", "어떤 도움을 받을 수 있는지 관찰하기"],
-      ["자료실 탐색", "관심 주제 도서 1권을 찾아 이유 남기기"],
-      ["의회자료실 살펴보기", "의회 정보가 시민에게 왜 필요한지 생각하기"],
-      ["전시실 감상", "전시 주제와 기억에 남은 표현 기록하기"],
-      ["미디어창작실 찾기", "기록을 영상이나 음성으로 바꿀 아이디어 떠올리기"],
-      ["지식정원 또는 생각정원", "공간 이름과 실제 느낌의 연결 적기"],
-      ["시민을 위한 도서관", "지역사회에 주는 가치 한 문장으로 정리하기"]
+    const storageKey = "busan-reading-club-individual-log";
+    const missionList = [
+      ["읽고 싶은 주제 정하기", "오늘의 주제와 개인 관심사를 연결하기"],
+      ["검색 또는 서가에서 후보 찾기", "후보 도서 3권의 제목을 기록하기"],
+      ["목차와 서문 훑어보기", "책의 흐름과 난이도를 빠르게 확인하기"],
+      ["최종 한 권 선택하기", "왜 이 책인지 근거를 남기기"],
+      ["집중 독서 25분 하기", "조용히 읽고 인상 깊은 부분 표시하기"],
+      ["인상 깊은 문장 저장하기", "문장과 페이지 또는 위치를 함께 적기"],
+      ["나만의 질문 만들기", "책을 읽고 생긴 질문 1개 이상 만들기"],
+      ["친구에게 추천 문장 쓰기", "누구에게 왜 추천하는지 정리하기"]
     ];
-    const floors = {
-      one: [
-        ["통합안내데스크", "참관 집결과 이용 안내의 기준점입니다."],
-        ["종합자료실", "다양한 주제의 자료를 직접 찾고 비교할 수 있습니다."],
-        ["책읽는 계단", "이동 동선과 독서 공간이 만나는 열린 장소입니다."],
-        ["상설·기획 전시실", "자료와 지역 문화가 전시로 연결됩니다."],
-        ["어린이·유아 자료실", "연령별 이용자를 고려한 자료와 동선이 보입니다."],
-        ["멀티미디어 코너", "책 밖의 자료를 입체적으로 접합니다."]
-      ],
-      two: [
-        ["의회자료실", "의정 활동과 법률·정책 정보를 만나는 핵심 공간입니다."],
-        ["주제자료실", "관심 주제별로 깊이 있는 탐색을 이어갑니다."],
-        ["지식정원", "조용한 사색과 대화를 연결하는 학습 공간입니다."],
-        ["생각정원", "개인 기록과 팀 토론을 정리하기 좋은 장소입니다."],
-        ["미디어창작실", "탐방 기록을 영상·음성 콘텐츠로 확장할 수 있습니다."],
-        ["영상세미나실", "함께 보고 듣고 토론하는 활동과 어울립니다."]
-      ]
-    };
     const prompts = [
-      "자료를 찾는 사람이 제일 먼저 마주하는 안내는 무엇인가요?",
-      "이 도서관이 부산에 있다는 점은 어떤 의미가 있나요?",
-      "의회자료실에서 시민의 권리와 연결되는 단서를 찾아보세요.",
-      "AI 시대에도 도서관이 계속 필요한 이유는 무엇인가요?",
-      "오늘 발견한 자료를 학교 프로젝트로 확장한다면 어떤 질문으로 시작할까요?"
+      "이 책의 제목은 어떤 궁금증을 만들나요?",
+      "저자는 독자에게 어떤 문제를 함께 생각하자고 하나요?",
+      "목차만 보았을 때 가장 읽고 싶은 부분은 어디인가요?",
+      "오늘 읽은 내용 중 내 생각과 달랐던 부분은 무엇인가요?",
+      "이 책을 친구에게 소개한다면 첫 문장을 어떻게 말할까요?",
+      "책 속 내용이 부산, 학교, 나의 생활과 연결되는 지점은 무엇인가요?"
     ];
+    const quizItems = [
+      {
+        q: "오늘 활동의 가장 중요한 목표는 무엇인가요?",
+        options: ["공간 사진 많이 찍기", "후보 도서를 비교하고 최종 한 권을 선택하기", "도서관 층별 시설 이름 외우기"],
+        answer: 1
+      },
+      {
+        q: "후보 도서를 고를 때 가장 먼저 확인하면 좋은 것은 무엇인가요?",
+        options: ["책 표지 색만 보기", "제목, 목차, 서문, 저자 정보 살펴보기", "가장 두꺼운 책 고르기"],
+        answer: 1
+      },
+      {
+        q: "인상 깊은 문장을 기록할 때 함께 남기면 좋은 정보는 무엇인가요?",
+        options: ["문장 위치나 페이지", "책장 색깔", "도서관 의자 개수"],
+        answer: 0
+      },
+      {
+        q: "독서동아리에서 좋은 질문에 가까운 것은 무엇인가요?",
+        options: ["정답이 하나만 있는 단순 암기 질문", "책의 내용과 내 생각을 연결해 토론할 수 있는 질문", "책을 읽지 않아도 대답할 수 있는 질문"],
+        answer: 1
+      },
+      {
+        q: "국회부산도서관의 주소로 맞는 것은 무엇인가요?",
+        options: ["부산광역시 강서구 명지국제1로 161", "부산광역시 해운대구 센텀중앙로 100", "서울특별시 영등포구 의사당대로 1"],
+        answer: 0
+      }
+    ];
+    const fields = [
+      "name", "date", "theme",
+      "book1Title", "book1Author", "book1Place", "book1Reason",
+      "book2Title", "book2Author", "book2Place", "book2Reason",
+      "book3Title", "book3Author", "book3Place", "book3Reason",
+      "finalBook", "finalReason", "recommend",
+      "learned", "connection", "shareQuestion"
+    ];
+
     let state = JSON.parse(localStorage.getItem(storageKey) || "{}");
     state.checked ??= [];
     state.records ??= [];
-    state.noteType ??= "관찰";
-    let seconds = 45 * 60;
+    state.noteType ??= "인상 깊은 문장";
+    state.quiz ??= {};
+    let seconds = 25 * 60;
     let timerId = null;
 
     function save() {
-      state.team = document.getElementById("team").value;
-      state.date = document.getElementById("date").value;
-      state.theme = document.getElementById("theme").value;
-      state.best = document.getElementById("best").value;
-      state.role = document.getElementById("role").value;
-      state.next = document.getElementById("next").value;
+      fields.forEach(id => state[id] = document.getElementById(id).value);
       localStorage.setItem(storageKey, JSON.stringify(state));
     }
 
     function load() {
-      document.getElementById("team").value = state.team || "";
-      document.getElementById("date").value = state.date || new Date().toISOString().slice(0,10);
-      document.getElementById("theme").value = state.theme || "민주주의와 의회정보";
-      document.getElementById("best").value = state.best || "";
-      document.getElementById("role").value = state.role || "";
-      document.getElementById("next").value = state.next || "";
-      document.querySelectorAll("input, select, textarea").forEach(el => el.addEventListener("input", save));
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (id === "date") {
+          el.value = state[id] || new Date().toISOString().slice(0, 10);
+        } else {
+          el.value = state[id] || "";
+        }
+        el.addEventListener("input", save);
+        el.addEventListener("change", save);
+      });
+      if (!document.getElementById("theme").value) {
+        document.getElementById("theme").value = "민주주의와 시민";
+      }
       renderMissions();
-      showFloor("one");
+      renderQuiz();
       renderRecords();
       save();
     }
 
     function renderMissions() {
       const box = document.getElementById("missions");
-      box.innerHTML = missions.map((m, i) => `
+      box.innerHTML = missionList.map((m, i) => `
         <label class="mission">
           <input type="checkbox" ${state.checked[i] ? "checked" : ""} onchange="toggleMission(${i}, this.checked)">
           <span><b>${i + 1}. ${m[0]}</b><small>${m[1]}</small></span>
@@ -492,36 +636,25 @@
 
     function updateProgress() {
       const done = state.checked.filter(Boolean).length;
-      document.getElementById("progressText").textContent = `탐방 미션 ${done} / ${missions.length}`;
-      document.getElementById("bar").style.width = `${done / missions.length * 100}%`;
-    }
-
-    function showFloor(floor, btn) {
-      if (btn) {
-        btn.parentElement.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-      }
-      document.getElementById("spaces").innerHTML = floors[floor].map(s => `
-        <div class="space"><b>${s[0]}</b><p>${s[1]}</p>
-        <button onclick="useSpace('${s[0]}')">이곳 기록하기</button></div>`).join("");
-    }
-
-    function useSpace(name) {
-      document.getElementById("note").value = `${name}: `;
-      document.getElementById("note").focus();
+      document.getElementById("progressText").textContent = `독서 미션 ${done} / ${missionList.length}`;
+      document.getElementById("bar").style.width = `${done / missionList.length * 100}%`;
     }
 
     function setNoteType(type, btn) {
       state.noteType = type;
       btn.parentElement.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      save();
+      localStorage.setItem(storageKey, JSON.stringify(state));
     }
 
     function saveNote() {
       const text = document.getElementById("note").value.trim();
       if (!text) return;
-      state.records.unshift({ type: state.noteType, text, time: new Date().toLocaleString("ko-KR") });
+      state.records.unshift({
+        type: state.noteType,
+        text,
+        time: new Date().toLocaleString("ko-KR")
+      });
       document.getElementById("note").value = "";
       renderRecords();
       save();
@@ -530,7 +663,7 @@
     function renderRecords() {
       const box = document.getElementById("records");
       if (!state.records.length) {
-        box.innerHTML = `<div class="empty">아직 저장된 기록이 없습니다.</div>`;
+        box.innerHTML = `<div class="empty">아직 저장된 독서 메모가 없습니다.</div>`;
         return;
       }
       box.innerHTML = state.records.map(r => `<div class="record"><b>${r.type}</b> · ${r.time}<br>${r.text}</div>`).join("");
@@ -541,7 +674,10 @@
       timerId = setInterval(() => {
         seconds = Math.max(0, seconds - 1);
         drawTimer();
-        if (seconds === 0) pauseTimer();
+        if (seconds === 0) {
+          pauseTimer();
+          document.getElementById("prompt").textContent = "읽기 시간이 끝났습니다. 방금 읽은 부분에서 문장 하나를 저장해보세요.";
+        }
       }, 1000);
     }
 
@@ -552,7 +688,7 @@
 
     function resetTimer() {
       pauseTimer();
-      seconds = 45 * 60;
+      seconds = 25 * 60;
       drawTimer();
     }
 
@@ -564,47 +700,111 @@
 
     function newPrompt() {
       const i = Math.floor(Math.random() * prompts.length);
-      document.getElementById("prompt").textContent = `관찰 질문: ${prompts[i]}`;
+      document.getElementById("prompt").textContent = `읽기 질문: ${prompts[i]}`;
+    }
+
+    function renderQuiz() {
+      const box = document.getElementById("quiz");
+      box.innerHTML = quizItems.map((item, i) => `
+        <div class="quiz-item">
+          <b>${i + 1}. ${item.q}</b>
+          <div class="quiz-options">
+            ${item.options.map((option, j) => `
+              <label>
+                <input type="radio" name="quiz${i}" value="${j}" ${Number(state.quiz[i]) === j ? "checked" : ""} onchange="saveQuiz(${i}, ${j})">
+                ${option}
+              </label>`).join("")}
+          </div>
+        </div>`).join("");
+    }
+
+    function saveQuiz(index, value) {
+      state.quiz[index] = value;
+      localStorage.setItem(storageKey, JSON.stringify(state));
+    }
+
+    function checkQuiz() {
+      let score = 0;
+      quizItems.forEach((item, i) => {
+        if (Number(state.quiz[i]) === item.answer) score++;
+      });
+      document.getElementById("quizResult").textContent = `점수: ${score} / ${quizItems.length}점`;
+    }
+
+    function resetQuiz() {
+      state.quiz = {};
+      document.getElementById("quizResult").textContent = "";
+      renderQuiz();
+      localStorage.setItem(storageKey, JSON.stringify(state));
     }
 
     function downloadReport() {
       save();
-      const records = state.records.map(r => `### ${r.type} (${r.time})\n${r.text}`).join("\n\n") || "저장된 기록 없음";
-      const checked = missions.map((m, i) => `- [${state.checked[i] ? "x" : " "}] ${m[0]}: ${m[1]}`).join("\n");
-      const md = `# 국회부산도서관 탐방 기록
+      const checked = missionList.map((m, i) => `- [${state.checked[i] ? "x" : " "}] ${m[0]}: ${m[1]}`).join("\n");
+      const records = state.records.map(r => `### ${r.type} (${r.time})\n${r.text}`).join("\n\n") || "저장된 독서 메모 없음";
+      const quizScore = quizItems.filter((item, i) => Number(state.quiz[i]) === item.answer).length;
+      const md = `# 국회부산도서관 독서동아리 개별 기록
 
-- 팀 이름: ${state.team || "미입력"}
-- 탐방 날짜: ${state.date || "미입력"}
-- 오늘의 주제: ${state.theme || "미입력"}
-- 장소: 부산광역시 강서구 명지국제1로 161
+- 이름: ${state.name || "미입력"}
+- 활동 날짜: ${state.date || "미입력"}
+- 읽고 싶은 주제: ${state.theme || "미입력"}
+- 장소: 국회부산도서관, 부산광역시 강서구 명지국제1로 161
 
-## 탐방 미션
+## 독서 미션
 ${checked}
 
-## 현장 기록
+## 후보 도서 3권
+
+### 후보 1
+- 제목: ${state.book1Title || "미입력"}
+- 저자: ${state.book1Author || "미입력"}
+- 위치/청구기호: ${state.book1Place || "미입력"}
+- 이유: ${state.book1Reason || "미입력"}
+
+### 후보 2
+- 제목: ${state.book2Title || "미입력"}
+- 저자: ${state.book2Author || "미입력"}
+- 위치/청구기호: ${state.book2Place || "미입력"}
+- 이유: ${state.book2Reason || "미입력"}
+
+### 후보 3
+- 제목: ${state.book3Title || "미입력"}
+- 저자: ${state.book3Author || "미입력"}
+- 위치/청구기호: ${state.book3Place || "미입력"}
+- 이유: ${state.book3Reason || "미입력"}
+
+## 최종 선택 도서
+- 책 제목: ${state.finalBook || "미입력"}
+- 선택 이유: ${state.finalReason || "미입력"}
+- 추천 대상: ${state.recommend || "미입력"}
+
+## 독서 메모
 ${records}
 
-## 탐방 후 정리
+## 퀴즈 결과
+${quizScore} / ${quizItems.length}점
 
-### 오늘 찾은 가장 의미 있는 자료
-${state.best || "미입력"}
+## 개별 활동 마무리
 
-### 도서관이 지역사회에 주는 역할
-${state.role || "미입력"}
+### 오늘 책에서 얻은 한 가지
+${state.learned || "미입력"}
 
-### 다음 탐방에서 확인할 질문
-${state.next || "미입력"}
+### 내 삶이나 학교와 연결되는 점
+${state.connection || "미입력"}
+
+### 동아리에서 나누고 싶은 질문
+${state.shareQuestion || "미입력"}
 `;
       const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
-      a.download = `${state.date || "탐방"}_국회부산도서관_기록.md`;
+      a.download = `${state.date || "독서활동"}_${state.name || "개별"}_국회부산도서관_독서기록.md`;
       a.click();
       URL.revokeObjectURL(a.href);
     }
 
     function clearAll() {
-      if (!confirm("저장된 기록을 모두 지울까요?")) return;
+      if (!confirm("저장된 개인 독서 기록을 모두 지울까요?")) return;
       localStorage.removeItem(storageKey);
       location.reload();
     }
