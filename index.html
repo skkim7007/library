@@ -6,8 +6,8 @@
     <title>국회부산도서관 탐방 기록장</title>
     <style>
         body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            background-color: #f0f4f8;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f4f7f6;
             color: #333;
             margin: 0;
             padding: 20px;
@@ -16,34 +16,39 @@
         }
         .container {
             background: #ffffff;
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 30px;
             box-sizing: border-box;
         }
         h1 {
-            color: #1a365d;
-            font-size: 24px;
+            color: #2c3e50;
+            font-size: 26px;
             text-align: center;
             margin-bottom: 5px;
         }
         p.subtitle {
             text-align: center;
-            color: #718096;
-            font-size: 14px;
-            margin-bottom: 25px;
+            color: #7f8c8d;
+            font-size: 15px;
+            margin-bottom: 30px;
         }
         .section {
+            background: #fdfdfd;
+            border: 1px solid #e1e8ed;
+            border-radius: 10px;
+            padding: 20px;
             margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed #e2e8f0;
         }
         h2 {
             font-size: 18px;
-            color: #2b6cb0;
+            color: #2980b9;
+            margin-top: 0;
             margin-bottom: 15px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
         }
         .input-group {
             margin-bottom: 15px;
@@ -51,52 +56,54 @@
         label {
             display: block;
             font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #34495e;
+        }
+        .quiz-text {
+            font-size: 14px;
+            color: #e67e22;
             font-weight: bold;
-            margin-bottom: 5px;
-            color: #4a5568;
+            margin-bottom: 8px;
+            background: #fff3e0;
+            padding: 10px;
+            border-radius: 6px;
         }
         input[type="text"], textarea {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #cbd5e0;
-            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
             font-size: 14px;
             box-sizing: border-box;
+            background-color: #fff;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, textarea:focus {
+            border-color: #3498db;
+            outline: none;
         }
         textarea {
             resize: vertical;
             min-height: 80px;
         }
-        .checklist-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            background: #edf2f7;
-            padding: 12px;
-            border-radius: 8px;
-        }
-        .checklist-item input[type="checkbox"] {
-            margin-right: 10px;
-            width: 20px;
-            height: 20px;
-        }
         button {
             width: 100%;
-            padding: 15px;
-            background-color: #3182ce;
+            padding: 16px;
+            background-color: #2980b9;
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.3s;
         }
         button:hover {
-            background-color: #2b6cb0;
+            background-color: #2471a3;
         }
         button:disabled {
-            background-color: #a0aec0;
+            background-color: #95a5a6;
             cursor: not-allowed;
         }
     </style>
@@ -105,97 +112,129 @@
 
 <div class="container">
     <h1>🏛️ 국회부산도서관 탐방</h1>
-    <p class="subtitle">나만의 도서관 탐험 기록장</p>
+    <p class="subtitle">질문에 답하며 도서관의 비밀을 파헤쳐 보자!</p>
 
     <div class="section">
-        <h2>👤 내 정보</h2>
+        <h2>👤 1. 내 정보</h2>
         <div class="input-group">
-            <label for="student-info">학년 반 / 이름</label>
             <input type="text" id="student-info" placeholder="예: 2학년 3반 홍길동">
         </div>
     </div>
 
     <div class="section">
-        <h2>✅ 탐방 미션 체크리스트</h2>
-        <div class="checklist-item">
-            <input type="checkbox" id="mission1">
-            <label for="mission1">1층 기획전시실 관람하기</label>
+        <h2>🕵️ 2. 도서관 탐험 퀴즈</h2>
+        
+        <div class="input-group">
+            <div class="quiz-text">Q1. 1층 전시실에서 현재 진행 중인 전시의 제목(주제)은 무엇인가요?</div>
+            <input type="text" id="quiz1" placeholder="정답을 적어주세요">
         </div>
-        <div class="checklist-item">
-            <input type="checkbox" id="mission2">
-            <label for="mission2">가장 읽어보고 싶은 영어 원서 찾기</label>
+        
+        <div class="input-group">
+            <div class="quiz-text">Q2. 의회와 관련된 법률 자료들이 모여있는 '의회자료실'은 몇 층에 있을까요?</div>
+            <input type="text" id="quiz2" placeholder="정답을 적어주세요">
         </div>
-        <div class="checklist-item">
-            <input type="checkbox" id="mission3">
-            <label for="mission3">도서관에서 가장 조용한 공간 찾아보기</label>
+
+        <div class="input-group">
+            <div class="quiz-text">Q3. 도서 검색대에서 '민주주의'를 검색하고, 가장 먼저 나오는 책의 제목과 청구기호를 적어보세요.</div>
+            <input type="text" id="quiz3" placeholder="책 제목 / 청구기호">
         </div>
     </div>
 
     <div class="section">
-        <h2>📝 관람 기록</h2>
+        <h2>📚 3. 운명의 책 찾기</h2>
+        <p style="font-size: 13px; color: #7f8c8d; margin-top: -10px; margin-bottom: 15px;">도서관을 둘러보다가 제목만 보고 '어? 이거 재밌겠는데?' 싶은 책을 찾아 기록해 보세요.</p>
         <div class="input-group">
-            <label for="book-title">발견한 흥미로운 책 제목 (영문/국문)</label>
-            <input type="text" id="book-title" placeholder="책 제목을 적어주세요">
+            <label>책 제목</label>
+            <input type="text" id="book-title" placeholder="예: 10대에게 권하는 인문학">
         </div>
         <div class="input-group">
-            <label for="impression">가장 인상 깊었던 점</label>
-            <textarea id="impression" placeholder="도서관의 시설이나 분위기 등 자유롭게 적어주세요."></textarea>
+            <label>저자</label>
+            <input type="text" id="book-author" placeholder="지은이 이름">
+        </div>
+        <div class="input-group">
+            <label>청구기호 (책 등표지에 적힌 번호)</label>
+            <input type="text" id="book-callnum" placeholder="예: 001.3 김12인">
+        </div>
+        <div class="input-group">
+            <label>이 책이 흥미로워 보인 이유</label>
+            <textarea id="book-reason" placeholder="표지 디자인이 예뻐서, 제목이 내 관심사라서 등 자유롭게 적어주세요."></textarea>
         </div>
     </div>
 
-    <button id="submit-btn" onclick="sendData()">💾 실시간 기록 저장하기</button>
+    <div class="section">
+        <h2>📖 4. 오늘 읽은 책, 한 줄 독후감</h2>
+        <p style="font-size: 13px; color: #7f8c8d; margin-top: -10px; margin-bottom: 15px;">탐방 시간 동안 자리에 앉아 짧게라도 읽어본 책이 있다면 기록해 주세요.</p>
+        <div class="input-group">
+            <label>내가 읽은 책 제목</label>
+            <input type="text" id="read-title" placeholder="책 제목">
+        </div>
+        <div class="input-group">
+            <label>짧은 감상평</label>
+            <textarea id="read-review" placeholder="어떤 내용이었나요? 알게 된 점이나 느낀 점을 2~3줄로 적어주세요."></textarea>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>💡 5. 탐방 마무리</h2>
+        <div class="input-group">
+            <label>국회부산도서관 탐방 전체 느낀 점</label>
+            <textarea id="impression" placeholder="일반 도서관과 다른 점이 있었나요? 오늘 탐방의 소감을 자유롭게 적어주세요."></textarea>
+        </div>
+    </div>
+
+    <button id="submit-btn" onclick="sendData()">🚀 탐방 일지 제출하기</button>
 </div>
 
 <script>
-    // ⚠️ 중요: 본인의 Google Apps Script 웹 앱 URL을 아래에 붙여넣으세요.
-    var WEB_APP_URL = "이곳에_복사한_웹_앱_URL을_넣으세요";
+    // ⚠️ 중요: 본인의 Google Apps Script 웹 앱 URL을 아래에 반드시 붙여넣으세요.
+    var WEB_APP_URL = "여기에_웹앱_URL을_붙여넣으세요";
 
     function sendData() {
         const studentInfo = document.getElementById('student-info').value.trim();
         if (!studentInfo) {
-            alert('학년 반과 이름을 입력해주세요!');
+            alert('맨 위에서 학년 반과 이름을 꼭 입력해주세요!');
+            document.getElementById('student-info').focus();
             return;
         }
 
         const btn = document.getElementById('submit-btn');
         btn.disabled = true;
-        btn.innerText = "전송 중...";
+        btn.innerText = "선생님께 제출 중...⏳";
 
-        const data = {
+        const payload = {
             studentInfo: studentInfo,
-            mission1: document.getElementById('mission1').checked,
-            mission2: document.getElementById('mission2').checked,
-            mission3: document.getElementById('mission3').checked,
+            quiz1: document.getElementById('quiz1').value,
+            quiz2: document.getElementById('quiz2').value,
+            quiz3: document.getElementById('quiz3').value,
             bookTitle: document.getElementById('book-title').value,
+            bookAuthor: document.getElementById('book-author').value,
+            bookCallNum: document.getElementById('book-callnum').value,
+            bookReason: document.getElementById('book-reason').value,
+            readTitle: document.getElementById('read-title').value,
+            readReview: document.getElementById('read-review').value,
             impression: document.getElementById('impression').value
         };
 
-        // Apps Script로 데이터 전송 (Fetch API 사용)
         fetch(WEB_APP_URL, {
             method: 'POST',
-            mode: 'no-cors', // CORS 정책 우회를 위해 no-cors 설정
+            mode: 'no-cors',
             cache: 'no-cache',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
         })
         .then(() => {
-            alert('탐방 기록이 선생님의 스프레드시트로 안전하게 저장되었습니다! 🎉');
-            // 입력 폼 초기화
-            document.getElementById('book-title').value = '';
-            document.getElementById('impression').value = '';
-            document.getElementById('mission1').checked = false;
-            document.getElementById('mission2').checked = false;
-            document.getElementById('mission3').checked = false;
+            alert('탐방 일지가 성공적으로 제출되었습니다! 수고하셨습니다 👏');
+            // 폼 초기화 (선택사항 - 학생들이 낸 걸 눈으로 확인하게 하려면 아래 코드를 지우셔도 됩니다)
+            const inputs = document.querySelectorAll('input[type="text"], textarea');
+            inputs.forEach(input => input.value = '');
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('오류가 발생했습니다. 네트워크 상태를 확인해주세요.');
+            alert('오류가 발생했습니다. 와이파이나 데이터 상태를 확인해주세요.');
         })
         .finally(() => {
             btn.disabled = false;
-            btn.innerText = "💾 실시간 기록 저장하기";
+            btn.innerText = "🚀 탐방 일지 제출하기";
         });
     }
 </script>
