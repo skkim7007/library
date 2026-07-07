@@ -8,39 +8,23 @@
         body { font-family: 'Pretendard', sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; }
         .container { background: #ffffff; max-width: 600px; width: 100%; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); padding: 30px; box-sizing: border-box; }
         h1 { color: #2c3e50; font-size: 26px; text-align: center; margin-bottom: 5px; }
-        p.subtitle { text-align: center; color: #7f8c8d; font-size: 15px; margin-bottom: 30px; }
+        p.subtitle { text-align: center; color: #e74c3c; font-size: 14px; font-weight: bold; margin-bottom: 30px; }
         .section { background: #fdfdfd; border: 1px solid #e1e8ed; border-radius: 10px; padding: 20px; margin-bottom: 25px; }
         h2 { font-size: 18px; color: #2980b9; margin-top: 0; margin-bottom: 15px; border-bottom: 2px solid #ecf0f1; padding-bottom: 10px; }
         .input-group { margin-bottom: 18px; }
         label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #34495e; }
         .quiz-text { font-size: 14px; color: #d35400; font-weight: bold; margin-bottom: 8px; background: #fff3e0; padding: 12px; border-radius: 6px; line-height: 1.4; }
         
-        /* 반, 번호, 이름 입력칸 스타일 추가 */
         select, input[type="text"], textarea { 
-            width: 100%; 
-            padding: 12px; 
-            border: 1px solid #bdc3c7; 
-            border-radius: 6px; 
-            font-size: 14px; 
-            box-sizing: border-box; 
-            transition: border-color 0.3s; 
-            background-color: #fff;
-            margin-bottom: 10px;
+            width: 100%; padding: 12px; border: 1px solid #bdc3c7; border-radius: 6px; 
+            font-size: 14px; box-sizing: border-box; transition: border-color 0.3s; background-color: #fff; margin-bottom: 10px;
         }
         input[type="text"]:focus, textarea:focus, select:focus { border-color: #3498db; outline: none; }
         textarea { resize: vertical; min-height: 80px; }
         
-        /* 맛있는 선물 강조 박스 */
         .reward-box {
-            background-color: #fff9e6;
-            color: #d35400;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 20px;
-            border: 2px dashed #f39c12;
-            line-height: 1.5;
+            background-color: #fff9e6; color: #d35400; padding: 15px; border-radius: 8px; text-align: center;
+            font-weight: bold; margin-bottom: 20px; border: 2px dashed #f39c12; line-height: 1.5;
         }
 
         button { width: 100%; padding: 16px; background-color: #2980b9; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
@@ -52,18 +36,16 @@
 
 <div class="container">
     <h1>🏛️ 국회부산도서관 탐방</h1>
-    <p class="subtitle">도서관 구석구석 숨겨진 비밀을 찾아라!</p>
+    <p class="subtitle">※ 주의: 단 하나의 빈칸이라도 있으면 제출되지 않습니다!</p>
 
     <div class="section">
         <h2>👤 1. 내 정보</h2>
         <div class="input-group">
             <select id="student-class">
                 <option value="">학년 반을 선택하세요</option>
-                <!-- 자바스크립트로 1~10반 자동 생성 -->
             </select>
             <select id="student-num">
                 <option value="">번호를 선택하세요</option>
-                <!-- 자바스크립트로 1~29번 자동 생성 -->
             </select>
             <input type="text" id="student-name" placeholder="이름을 입력하세요 (예: 홍길동)">
         </div>
@@ -124,23 +106,26 @@
             <input type="text" id="read-title" placeholder="책 제목">
         </div>
         <div class="input-group">
+            <label>지은이 (저자)</label>
+            <input type="text" id="read-author" placeholder="지은이 이름">
+        </div>
+        <div class="input-group">
             <label>짧은 감상평</label>
             <textarea id="read-review" placeholder="알게 된 점이나 느낀 점을 2~3줄로 적어주세요."></textarea>
         </div>
     </div>
 
     <div class="section">
-        <h2>💡 5. 탐방 마무리</h2>
+        <h2>💡 5. 탐방 마무리 (4문장 이상 작성 필수!)</h2>
         <div class="input-group">
             <label>국회부산도서관 탐방 전체 느낀 점</label>
-            <textarea id="impression" placeholder="오늘 탐방의 소감을 자유롭게 적어주세요."></textarea>
+            <textarea id="impression" placeholder="오늘 탐방의 소감을 자유롭게 적어주세요. (4문장 이상 길게 작성해 주세요!)" style="min-height: 120px;"></textarea>
         </div>
     </div>
 
-    <!-- 선생님의 깜짝 선물 안내 메시지 -->
     <div class="reward-box">
         🎁 잠깐!<br>
-        학습지를 끝까지 성실하게 작성해서 제출한 학생들에게는<br>학교에 돌아가서 <strong>맛있는 선물</strong>이 기다리고 있습니다! 화이팅! 🍕🍫
+        모든 칸을 꽉꽉 채워 성실하게 제출한 학생들에게는<br>학교에 돌아가서 <strong>맛있는 선물</strong>이 기다리고 있습니다! 화이팅! 🍕🍫
     </div>
 
     <button id="submit-btn" onclick="sendData()">🚀 탐방 일지 제출하고 선물 받기</button>
@@ -148,9 +133,8 @@
 
 <script>
     // ⚠️ 중요: 발급받으신 웹 앱 URL을 아래에 꼭 붙여넣어 주세요!
-    var WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw2buyTw_PvK1viw4bSrTL6vy6oKX-1QGJO7XDvygcJhxD3J8wg16Av7z4cA7ebmcdb/exec";
+    var WEB_APP_URL = "https://script.google.com/macros/s/AKfycbypOSuNii0Ju304z0H3LQU3lJtQYlkby-S7gFxels7wybsKEUxNd25ZSNWuzddyAWHh/exec";
 
-    // 페이지가 로드될 때 2학년 1~10반, 1~29번 선택지를 자동으로 만들어 줍니다.
     window.onload = function() {
         const classSelect = document.getElementById('student-class');
         for(let i=1; i<=10; i++) {
@@ -170,42 +154,62 @@
     };
 
     function sendData() {
-        // 학년/반, 번호, 이름 가져오기
-        const sClass = document.getElementById('student-class').value;
-        const sNum = document.getElementById('student-num').value;
-        const sName = document.getElementById('student-name').value.trim();
+        // 모든 입력값 배열로 정리 (빈칸 검사용)
+        const fields = [
+            { id: 'student-class', name: '학년 반' },
+            { id: 'student-num', name: '번호' },
+            { id: 'student-name', name: '이름' },
+            { id: 'quiz1', name: 'Q1 정답' },
+            { id: 'quiz2', name: 'Q2 정답' },
+            { id: 'quiz3', name: 'Q3 정답' },
+            { id: 'quiz4', name: 'Q4 정답' },
+            { id: 'quiz5', name: 'Q5 정답' },
+            { id: 'quiz6', name: 'Q6 정답' },
+            { id: 'book-title', name: '운명의 책 제목' },
+            { id: 'book-author', name: '운명의 책 저자' },
+            { id: 'book-callnum', name: '운명의 책 청구기호' },
+            { id: 'book-reason', name: '흥미로운 이유' },
+            { id: 'read-title', name: '읽은 책 제목' },
+            { id: 'read-author', name: '읽은 책 저자' },
+            { id: 'read-review', name: '짧은 감상평' },
+            { id: 'impression', name: '전체 느낀 점' }
+        ];
 
-        if (!sClass || !sNum || !sName) {
-            alert('학년 반, 번호, 이름을 모두 정확히 입력해주세요!');
-            // 입력 안 한 곳으로 화면 이동
-            if(!sClass) document.getElementById('student-class').focus();
-            else if(!sNum) document.getElementById('student-num').focus();
-            else document.getElementById('student-name').focus();
-            return;
+        // 1. 빈칸 검사
+        for (let i = 0; i < fields.length; i++) {
+            const el = document.getElementById(fields[i].id);
+            if (!el.value.trim()) {
+                alert(`🚨 '${fields[i].name}' 항목이 비어있습니다. 모든 칸을 채워주세요!`);
+                el.focus();
+                return; // 제출 중단
+            }
         }
 
+        // 4문장 시스템 검사(마침표 확인 등)는 선생님 요청으로 삭제되었습니다.
+
+        // 2. 모든 검사를 통과하면 전송 시작
         const btn = document.getElementById('submit-btn');
         btn.disabled = true;
         btn.innerText = "선생님께 제출 중...⏳";
 
-        // 기존 Apps Script에서 처리할 수 있도록 3개의 데이터를 하나의 문자열로 합칩니다.
-        const combinedStudentInfo = `${sClass} ${sNum} ${sName}`;
+        const combinedStudentInfo = `${document.getElementById('student-class').value} ${document.getElementById('student-num').value} ${document.getElementById('student-name').value.trim()}`;
 
         const payload = {
             studentInfo: combinedStudentInfo,
-            quiz1: document.getElementById('quiz1').value,
-            quiz2: document.getElementById('quiz2').value,
-            quiz3: document.getElementById('quiz3').value,
-            quiz4: document.getElementById('quiz4').value,
-            quiz5: document.getElementById('quiz5').value,
-            quiz6: document.getElementById('quiz6').value,
-            bookTitle: document.getElementById('book-title').value,
-            bookAuthor: document.getElementById('book-author').value,
-            bookCallNum: document.getElementById('book-callnum').value,
-            bookReason: document.getElementById('book-reason').value,
-            readTitle: document.getElementById('read-title').value,
-            readReview: document.getElementById('read-review').value,
-            impression: document.getElementById('impression').value
+            quiz1: document.getElementById('quiz1').value.trim(),
+            quiz2: document.getElementById('quiz2').value.trim(),
+            quiz3: document.getElementById('quiz3').value.trim(),
+            quiz4: document.getElementById('quiz4').value.trim(),
+            quiz5: document.getElementById('quiz5').value.trim(),
+            quiz6: document.getElementById('quiz6').value.trim(),
+            bookTitle: document.getElementById('book-title').value.trim(),
+            bookAuthor: document.getElementById('book-author').value.trim(),
+            bookCallNum: document.getElementById('book-callnum').value.trim(),
+            bookReason: document.getElementById('book-reason').value.trim(),
+            readTitle: document.getElementById('read-title').value.trim(),
+            readAuthor: document.getElementById('read-author').value.trim(),
+            readReview: document.getElementById('read-review').value.trim(),
+            impression: document.getElementById('impression').value.trim()
         };
 
         fetch(WEB_APP_URL, {
@@ -216,7 +220,7 @@
             body: JSON.stringify(payload)
         })
         .then(() => {
-            alert('탐방 일지가 성공적으로 제출되었습니다! 이제 맛있는 선물을 기대해 주세요 👏');
+            alert('탐방 일지가 성공적으로 제출되었습니다! 이제 맛있는 선물을 기대해 주세요 🎉');
         })
         .catch(error => {
             console.error('Error:', error);
