@@ -86,7 +86,7 @@
             <input type="text" id="book-title" placeholder="예: 10대에게 권하는 인문학">
         </div>
         <div class="input-group">
-            <label>저자</label>
+            <label>저자(지은이)</label>
             <input type="text" id="book-author" placeholder="지은이 이름">
         </div>
         <div class="input-group">
@@ -106,8 +106,12 @@
             <input type="text" id="read-title" placeholder="책 제목">
         </div>
         <div class="input-group">
-            <label>지은이 (저자)</label>
+            <label>저자(지은이)</label>
             <input type="text" id="read-author" placeholder="지은이 이름">
+        </div>
+        <div class="input-group">
+            <label>청구기호 (책 등표지에 적힌 번호)</label>
+            <input type="text" id="read-callnum" placeholder="예: 001.3 김12인">
         </div>
         <div class="input-group">
             <label>짧은 감상평</label>
@@ -133,7 +137,7 @@
 
 <script>
     // ⚠️ 중요: 발급받으신 웹 앱 URL을 아래에 꼭 붙여넣어 주세요!
-    var WEB_APP_URL = "https://script.google.com/macros/s/AKfycbypOSuNii0Ju304z0H3LQU3lJtQYlkby-S7gFxels7wybsKEUxNd25ZSNWuzddyAWHh/exec";
+    var WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzoG4LOON931nI0L_PtHiJvuTYnDe2n6zpG3QSaorIBA6lwsTxzbqQRPSCALhFMIK_T/exec";
 
     window.onload = function() {
         const classSelect = document.getElementById('student-class');
@@ -171,23 +175,21 @@
             { id: 'book-reason', name: '흥미로운 이유' },
             { id: 'read-title', name: '읽은 책 제목' },
             { id: 'read-author', name: '읽은 책 저자' },
+            { id: 'read-callnum', name: '읽은 책 청구기호' },
             { id: 'read-review', name: '짧은 감상평' },
             { id: 'impression', name: '전체 느낀 점' }
         ];
 
-        // 1. 빈칸 검사
+        // 빈칸 검사
         for (let i = 0; i < fields.length; i++) {
             const el = document.getElementById(fields[i].id);
             if (!el.value.trim()) {
                 alert(`🚨 '${fields[i].name}' 항목이 비어있습니다. 모든 칸을 채워주세요!`);
                 el.focus();
-                return; // 제출 중단
+                return; 
             }
         }
 
-        // 4문장 시스템 검사(마침표 확인 등)는 선생님 요청으로 삭제되었습니다.
-
-        // 2. 모든 검사를 통과하면 전송 시작
         const btn = document.getElementById('submit-btn');
         btn.disabled = true;
         btn.innerText = "선생님께 제출 중...⏳";
@@ -208,6 +210,7 @@
             bookReason: document.getElementById('book-reason').value.trim(),
             readTitle: document.getElementById('read-title').value.trim(),
             readAuthor: document.getElementById('read-author').value.trim(),
+            readCallNum: document.getElementById('read-callnum').value.trim(),
             readReview: document.getElementById('read-review').value.trim(),
             impression: document.getElementById('impression').value.trim()
         };
