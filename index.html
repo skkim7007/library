@@ -14,9 +14,35 @@
         .input-group { margin-bottom: 18px; }
         label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #34495e; }
         .quiz-text { font-size: 14px; color: #d35400; font-weight: bold; margin-bottom: 8px; background: #fff3e0; padding: 12px; border-radius: 6px; line-height: 1.4; }
-        input[type="text"], textarea { width: 100%; padding: 12px; border: 1px solid #bdc3c7; border-radius: 6px; font-size: 14px; box-sizing: border-box; transition: border-color 0.3s; }
-        input[type="text"]:focus, textarea:focus { border-color: #3498db; outline: none; }
+        
+        /* 반, 번호, 이름 입력칸 스타일 추가 */
+        select, input[type="text"], textarea { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #bdc3c7; 
+            border-radius: 6px; 
+            font-size: 14px; 
+            box-sizing: border-box; 
+            transition: border-color 0.3s; 
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+        input[type="text"]:focus, textarea:focus, select:focus { border-color: #3498db; outline: none; }
         textarea { resize: vertical; min-height: 80px; }
+        
+        /* 맛있는 선물 강조 박스 */
+        .reward-box {
+            background-color: #fff9e6;
+            color: #d35400;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: 2px dashed #f39c12;
+            line-height: 1.5;
+        }
+
         button { width: 100%; padding: 16px; background-color: #2980b9; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
         button:hover { background-color: #2471a3; }
         button:disabled { background-color: #95a5a6; cursor: not-allowed; }
@@ -31,38 +57,40 @@
     <div class="section">
         <h2>👤 1. 내 정보</h2>
         <div class="input-group">
-            <input type="text" id="student-info" placeholder="예: 2학년 3반 홍길동">
+            <select id="student-class">
+                <option value="">학년 반을 선택하세요</option>
+                <!-- 자바스크립트로 1~10반 자동 생성 -->
+            </select>
+            <select id="student-num">
+                <option value="">번호를 선택하세요</option>
+                <!-- 자바스크립트로 1~29번 자동 생성 -->
+            </select>
+            <input type="text" id="student-name" placeholder="이름을 입력하세요 (예: 홍길동)">
         </div>
     </div>
 
     <div class="section">
         <h2>🕵️ 2. 도서관 탐험 퀴즈</h2>
-        
         <div class="input-group">
             <div class="quiz-text">Q1. 1층 어린이자료실 안에는 영유아들이 신발을 벗고 들어가는 특별한 방이 있어. 이 방의 이름은 무엇일까? (힌트: ㄷㄹ방)</div>
             <input type="text" id="quiz1" placeholder="정답을 적어주세요">
         </div>
-        
         <div class="input-group">
             <div class="quiz-text">Q2. 1층 종합자료실 안쪽 '멀티미디어 코너' 서가에서 가장 보고 싶은 DVD 영화를 하나 찾아서 제목을 적어볼래?</div>
             <input type="text" id="quiz2" placeholder="영화 제목">
         </div>
-
         <div class="input-group">
             <div class="quiz-text">Q3. 1층 로비에는 커다란 화면을 터치해서 보는 '전자신문(키오스크)'이 있어. 직접 조작해 보고, 오늘자 기사 제목 중 하나를 적어봐.</div>
             <input type="text" id="quiz3" placeholder="기사 제목">
         </div>
-
         <div class="input-group">
             <div class="quiz-text">Q4. 계단을 따라 2층으로 올라가면 '주제자료실'이 나와. 이곳에 마련된 '특화자료' 코너의 주제(세 글자)는 무엇일까? (힌트: ㅅㅌㅎ)</div>
             <input type="text" id="quiz4" placeholder="정답을 적어주세요">
         </div>
-
         <div class="input-group">
             <div class="quiz-text">Q5. 2층 '의회자료실' 서가를 둘러보고, '국회'나 '법'과 관련된 책을 직접 하나 찾아서 제목과 청구기호를 적어줘.</div>
             <input type="text" id="quiz5" placeholder="책 제목 / 청구기호">
         </div>
-
         <div class="input-group">
             <div class="quiz-text">Q6. 도서 검색대에서 평소 너의 관심사를 검색하고, 제일 먼저 나오는 책의 청구기호 첫 번째 숫자 세 자리(십진분류 번호)를 적어봐.</div>
             <input type="text" id="quiz6" placeholder="관심사 / 숫자 세 자리">
@@ -109,18 +137,50 @@
         </div>
     </div>
 
-    <button id="submit-btn" onclick="sendData()">🚀 탐방 일지 제출하기</button>
+    <!-- 선생님의 깜짝 선물 안내 메시지 -->
+    <div class="reward-box">
+        🎁 잠깐!<br>
+        학습지를 끝까지 성실하게 작성해서 제출한 학생들에게는<br>학교에 돌아가서 <strong>맛있는 선물</strong>이 기다리고 있습니다! 화이팅! 🍕🍫
+    </div>
+
+    <button id="submit-btn" onclick="sendData()">🚀 탐방 일지 제출하고 선물 받기</button>
 </div>
 
 <script>
-    // ⚠️ 중요: 새로 배포한 웹 앱 URL을 아래에 꼭 붙여넣어 줘!
+    // ⚠️ 중요: 발급받으신 웹 앱 URL을 아래에 꼭 붙여넣어 주세요!
     var WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw2buyTw_PvK1viw4bSrTL6vy6oKX-1QGJO7XDvygcJhxD3J8wg16Av7z4cA7ebmcdb/exec";
 
+    // 페이지가 로드될 때 2학년 1~10반, 1~29번 선택지를 자동으로 만들어 줍니다.
+    window.onload = function() {
+        const classSelect = document.getElementById('student-class');
+        for(let i=1; i<=10; i++) {
+            let opt = document.createElement('option');
+            opt.value = `2학년 ${i}반`;
+            opt.innerHTML = `2학년 ${i}반`;
+            classSelect.appendChild(opt);
+        }
+        
+        const numSelect = document.getElementById('student-num');
+        for(let i=1; i<=29; i++) {
+            let opt = document.createElement('option');
+            opt.value = `${i}번`;
+            opt.innerHTML = `${i}번`;
+            numSelect.appendChild(opt);
+        }
+    };
+
     function sendData() {
-        const studentInfo = document.getElementById('student-info').value.trim();
-        if (!studentInfo) {
-            alert('맨 위에서 학년 반과 이름을 꼭 입력해주세요!');
-            document.getElementById('student-info').focus();
+        // 학년/반, 번호, 이름 가져오기
+        const sClass = document.getElementById('student-class').value;
+        const sNum = document.getElementById('student-num').value;
+        const sName = document.getElementById('student-name').value.trim();
+
+        if (!sClass || !sNum || !sName) {
+            alert('학년 반, 번호, 이름을 모두 정확히 입력해주세요!');
+            // 입력 안 한 곳으로 화면 이동
+            if(!sClass) document.getElementById('student-class').focus();
+            else if(!sNum) document.getElementById('student-num').focus();
+            else document.getElementById('student-name').focus();
             return;
         }
 
@@ -128,8 +188,11 @@
         btn.disabled = true;
         btn.innerText = "선생님께 제출 중...⏳";
 
+        // 기존 Apps Script에서 처리할 수 있도록 3개의 데이터를 하나의 문자열로 합칩니다.
+        const combinedStudentInfo = `${sClass} ${sNum} ${sName}`;
+
         const payload = {
-            studentInfo: studentInfo,
+            studentInfo: combinedStudentInfo,
             quiz1: document.getElementById('quiz1').value,
             quiz2: document.getElementById('quiz2').value,
             quiz3: document.getElementById('quiz3').value,
@@ -153,7 +216,7 @@
             body: JSON.stringify(payload)
         })
         .then(() => {
-            alert('탐방 일지가 성공적으로 제출되었습니다! 수고하셨습니다 👏');
+            alert('탐방 일지가 성공적으로 제출되었습니다! 이제 맛있는 선물을 기대해 주세요 👏');
         })
         .catch(error => {
             console.error('Error:', error);
@@ -161,7 +224,7 @@
         })
         .finally(() => {
             btn.disabled = false;
-            btn.innerText = "🚀 탐방 일지 제출하기";
+            btn.innerText = "🚀 탐방 일지 제출하고 선물 받기";
         });
     }
 </script>
