@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>국회부산도서관 탐방 기록장</title>
+  <style>
+    :root {
+      --bg: #f5f7f2;
+      --card: #ffffff;
+      --ink: #1f2a32;
+      --muted: #65727a;
+      --line: #d8ded5;
+      --green: #10645d;
+      --red: #e8543f;
+      --yellow: #f4b942;
+      --blue: #e4f1ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    header {
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(9, 35, 32, .94), rgba(9, 35, 32, .42)),
+        url("https://busan.nanet.go.kr/mainResources/image/ko/local/main/renew/img_maincard01.jpg") center / cover;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 420px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 28px;
+      align-items: end;
+      padding: 38px 0 62px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.1rem, 6vw, 4.5rem);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.35rem;
+    }
+
+    .kicker {
+      margin: 0 0 10px;
+      color: var(--yellow);
+      font-weight: 900;
+    }
+
+    .hero p:last-child {
+      max-width: 680px;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.9);
+    }
+
+    .visit-box, .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: 0 12px 28px rgba(31,42,50,.09);
+    }
+
+    .visit-box {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(12, 48, 44, .75);
+      border-color: rgba(255,255,255,.28);
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-weight: 800;
+    }
+
+    .visit-box label { color: rgba(255,255,255,.84); }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    input, select {
+      min-height: 42px;
+      padding: 0 12px;
+    }
+
+    textarea {
+      min-height: 132px;
+      padding: 12px;
+      resize: vertical;
+    }
+
+    main.wrap {
+      margin-top: -36px;
+      padding-bottom: 34px;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .info div {
+      min-height: 96px;
+      padding: 14px;
+      border-radius: 8px;
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .info b {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--green);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+    }
+
+    .card {
+      padding: 20px;
+      min-width: 0;
+    }
+
+    .missions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .mission {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+      min-height: 92px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fbff;
+      cursor: pointer;
+    }
+
+    .mission input {
+      width: 20px;
+      min-height: 20px;
+      accent-color: var(--green);
+    }
+
+    .mission small {
+      display: block;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .bar {
+      height: 12px;
+      margin: 0 0 14px;
+      border-radius: 999px;
+      background: #e7ece8;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--yellow), var(--red));
+    }
+
+    .timer {
+      display: grid;
+      place-items: center;
+      min-height: 120px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      background: var(--blue);
+      font-size: clamp(2.4rem, 8vw, 4.2rem);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    button {
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .primary {
+      border-color: var(--green);
+      background: var(--green);
+      color: white;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      overflow-x: auto;
+    }
+
+    .tab {
+      padding: 0 14px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .tab.active {
+      border-color: var(--green);
+      background: var(--green);
+      color: white;
+    }
+
+    .spaces {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .space {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+    }
+
+    .space p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .records {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .record {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      white-space: pre-wrap;
+    }
+
+    .record b {
+      color: var(--red);
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      padding: 20px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 820px) {
+      .hero, .grid, .info, .missions, .spaces, .records {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <section class="hero wrap">
+      <div>
+        <p class="kicker">동아리 현장 탐방</p>
+        <h1>국회부산도서관 탐방 기록장</h1>
+        <p>자료실, 전시실, 의회자료실, 미디어창작실을 둘러보며 관찰한 장면과 질문을 바로 기록하세요.</p>
+      </div>
+      <div class="visit-box">
+        <label>팀 이름 <input id="team" placeholder="예: 기록탐험대"></label>
+        <label>탐방 날짜 <input id="date" type="date"></label>
+        <label>오늘의 주제
+          <select id="theme">
+            <option>민주주의와 의회정보</option>
+            <option>도서관 공간 디자인</option>
+            <option>기록과 아카이브</option>
+            <option>AI 시대의 정보 탐색</option>
+          </select>
+        </label>
+      </div>
+    </section>
+  </header>
+
+  <main class="wrap">
+    <section class="info">
+      <div><b>주소</b>부산광역시 강서구 명지국제1로 161</div>
+      <div><b>참관</b>평일 10:00 / 14:00, 사전 신청 권장</div>
+      <div><b>공간</b>1층 자료·전시, 2층 의회·주제자료</div>
+      <div><b>태도</b>조용히, 촬영 전 확인, 열람자 배려</div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2 id="progressText">탐방 미션 0 / 8</h2>
+        <div class="bar"><span id="bar"></span></div>
+        <div class="missions" id="missions"></div>
+      </article>
+
+      <article class="card">
+        <h2>탐방 타이머</h2>
+        <div class="timer" id="timer">45:00</div>
+        <div class="actions">
+          <button class="primary" onclick="startTimer()">시작</button>
+          <button onclick="pauseTimer()">정지</button>
+          <button onclick="resetTimer()">초기화</button>
+        </div>
+        <p id="prompt">관찰 질문: 이 도서관이 부산에 있다는 점은 어떤 의미가 있나요?</p>
+        <button onclick="newPrompt()">관찰 질문 뽑기</button>
+      </article>
+
+      <article class="card">
+        <h2>공간 탐색</h2>
+        <div class="tabs">
+          <button class="tab active" onclick="showFloor('one', this)">1층</button>
+          <button class="tab" onclick="showFloor('two', this)">2층</button>
+        </div>
+        <div class="spaces" id="spaces"></div>
+      </article>
+
+      <article class="card">
+        <h2>현장 기록</h2>
+        <div class="tabs">
+          <button class="tab active" onclick="setNoteType('관찰', this)">관찰</button>
+          <button class="tab" onclick="setNoteType('질문', this)">질문</button>
+          <button class="tab" onclick="setNoteType('인용', this)">인용</button>
+          <button class="tab" onclick="setNoteType('아이디어', this)">아이디어</button>
+        </div>
+        <textarea id="note" placeholder="인상 깊은 공간, 발견한 자료, 새로 생긴 질문을 적어보세요."></textarea>
+        <div class="actions">
+          <button class="primary" onclick="saveNote()">기록 저장</button>
+          <button onclick="downloadReport()">기록 다운로드</button>
+          <button onclick="clearAll()">초기화</button>
+        </div>
+      </article>
+
+      <article class="card full">
+        <h2>우리 팀 탐방 아카이브</h2>
+        <div class="records" id="records"></div>
+      </article>
+
+      <article class="card full">
+        <h2>탐방 후 정리</h2>
+        <label>오늘 찾은 가장 의미 있는 자료
+          <textarea id="best" placeholder="자료명, 위치, 의미를 함께 적어보세요."></textarea>
+        </label>
+        <label>도서관이 지역사회에 주는 역할
+          <textarea id="role" placeholder="시민, 학생, 연구자 관점에서 생각해보세요."></textarea>
+        </label>
+        <label>다음 탐방에서 확인할 질문
+          <textarea id="next" placeholder="추가로 조사하고 싶은 질문을 남겨보세요."></textarea>
+        </label>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const storageKey = "busan-library-appscript-log";
+    const missions = [
+      ["입구와 안내 관찰", "처음 방문한 사람이 길을 찾기 쉬운지 확인하기"],
+      ["통합안내데스크 기록", "어떤 도움을 받을 수 있는지 관찰하기"],
+      ["자료실 탐색", "관심 주제 도서 1권을 찾아 이유 남기기"],
+      ["의회자료실 살펴보기", "의회 정보가 시민에게 왜 필요한지 생각하기"],
+      ["전시실 감상", "전시 주제와 기억에 남은 표현 기록하기"],
+      ["미디어창작실 찾기", "기록을 영상이나 음성으로 바꿀 아이디어 떠올리기"],
+      ["지식정원 또는 생각정원", "공간 이름과 실제 느낌의 연결 적기"],
+      ["시민을 위한 도서관", "지역사회에 주는 가치 한 문장으로 정리하기"]
+    ];
+    const floors = {
+      one: [
+        ["통합안내데스크", "참관 집결과 이용 안내의 기준점입니다."],
+        ["종합자료실", "다양한 주제의 자료를 직접 찾고 비교할 수 있습니다."],
+        ["책읽는 계단", "이동 동선과 독서 공간이 만나는 열린 장소입니다."],
+        ["상설·기획 전시실", "자료와 지역 문화가 전시로 연결됩니다."],
+        ["어린이·유아 자료실", "연령별 이용자를 고려한 자료와 동선이 보입니다."],
+        ["멀티미디어 코너", "책 밖의 자료를 입체적으로 접합니다."]
+      ],
+      two: [
+        ["의회자료실", "의정 활동과 법률·정책 정보를 만나는 핵심 공간입니다."],
+        ["주제자료실", "관심 주제별로 깊이 있는 탐색을 이어갑니다."],
+        ["지식정원", "조용한 사색과 대화를 연결하는 학습 공간입니다."],
+        ["생각정원", "개인 기록과 팀 토론을 정리하기 좋은 장소입니다."],
+        ["미디어창작실", "탐방 기록을 영상·음성 콘텐츠로 확장할 수 있습니다."],
+        ["영상세미나실", "함께 보고 듣고 토론하는 활동과 어울립니다."]
+      ]
+    };
+    const prompts = [
+      "자료를 찾는 사람이 제일 먼저 마주하는 안내는 무엇인가요?",
+      "이 도서관이 부산에 있다는 점은 어떤 의미가 있나요?",
+      "의회자료실에서 시민의 권리와 연결되는 단서를 찾아보세요.",
+      "AI 시대에도 도서관이 계속 필요한 이유는 무엇인가요?",
+      "오늘 발견한 자료를 학교 프로젝트로 확장한다면 어떤 질문으로 시작할까요?"
+    ];
+    let state = JSON.parse(localStorage.getItem(storageKey) || "{}");
+    state.checked ??= [];
+    state.records ??= [];
+    state.noteType ??= "관찰";
+    let seconds = 45 * 60;
+    let timerId = null;
+
+    function save() {
+      state.team = document.getElementById("team").value;
+      state.date = document.getElementById("date").value;
+      state.theme = document.getElementById("theme").value;
+      state.best = document.getElementById("best").value;
+      state.role = document.getElementById("role").value;
+      state.next = document.getElementById("next").value;
+      localStorage.setItem(storageKey, JSON.stringify(state));
+    }
+
+    function load() {
+      document.getElementById("team").value = state.team || "";
+      document.getElementById("date").value = state.date || new Date().toISOString().slice(0,10);
+      document.getElementById("theme").value = state.theme || "민주주의와 의회정보";
+      document.getElementById("best").value = state.best || "";
+      document.getElementById("role").value = state.role || "";
+      document.getElementById("next").value = state.next || "";
+      document.querySelectorAll("input, select, textarea").forEach(el => el.addEventListener("input", save));
+      renderMissions();
+      showFloor("one");
+      renderRecords();
+      save();
+    }
+
+    function renderMissions() {
+      const box = document.getElementById("missions");
+      box.innerHTML = missions.map((m, i) => `
+        <label class="mission">
+          <input type="checkbox" ${state.checked[i] ? "checked" : ""} onchange="toggleMission(${i}, this.checked)">
+          <span><b>${i + 1}. ${m[0]}</b><small>${m[1]}</small></span>
+        </label>`).join("");
+      updateProgress();
+    }
+
+    function toggleMission(i, checked) {
+      state.checked[i] = checked;
+      updateProgress();
+      save();
+    }
+
+    function updateProgress() {
+      const done = state.checked.filter(Boolean).length;
+      document.getElementById("progressText").textContent = `탐방 미션 ${done} / ${missions.length}`;
+      document.getElementById("bar").style.width = `${done / missions.length * 100}%`;
+    }
+
+    function showFloor(floor, btn) {
+      if (btn) {
+        btn.parentElement.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      }
+      document.getElementById("spaces").innerHTML = floors[floor].map(s => `
+        <div class="space"><b>${s[0]}</b><p>${s[1]}</p>
+        <button onclick="useSpace('${s[0]}')">이곳 기록하기</button></div>`).join("");
+    }
+
+    function useSpace(name) {
+      document.getElementById("note").value = `${name}: `;
+      document.getElementById("note").focus();
+    }
+
+    function setNoteType(type, btn) {
+      state.noteType = type;
+      btn.parentElement.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      save();
+    }
+
+    function saveNote() {
+      const text = document.getElementById("note").value.trim();
+      if (!text) return;
+      state.records.unshift({ type: state.noteType, text, time: new Date().toLocaleString("ko-KR") });
+      document.getElementById("note").value = "";
+      renderRecords();
+      save();
+    }
+
+    function renderRecords() {
+      const box = document.getElementById("records");
+      if (!state.records.length) {
+        box.innerHTML = `<div class="empty">아직 저장된 기록이 없습니다.</div>`;
+        return;
+      }
+      box.innerHTML = state.records.map(r => `<div class="record"><b>${r.type}</b> · ${r.time}<br>${r.text}</div>`).join("");
+    }
+
+    function startTimer() {
+      if (timerId) return;
+      timerId = setInterval(() => {
+        seconds = Math.max(0, seconds - 1);
+        drawTimer();
+        if (seconds === 0) pauseTimer();
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      clearInterval(timerId);
+      timerId = null;
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      seconds = 45 * 60;
+      drawTimer();
+    }
+
+    function drawTimer() {
+      const m = String(Math.floor(seconds / 60)).padStart(2, "0");
+      const s = String(seconds % 60).padStart(2, "0");
+      document.getElementById("timer").textContent = `${m}:${s}`;
+    }
+
+    function newPrompt() {
+      const i = Math.floor(Math.random() * prompts.length);
+      document.getElementById("prompt").textContent = `관찰 질문: ${prompts[i]}`;
+    }
+
+    function downloadReport() {
+      save();
+      const records = state.records.map(r => `### ${r.type} (${r.time})\n${r.text}`).join("\n\n") || "저장된 기록 없음";
+      const checked = missions.map((m, i) => `- [${state.checked[i] ? "x" : " "}] ${m[0]}: ${m[1]}`).join("\n");
+      const md = `# 국회부산도서관 탐방 기록
+
+- 팀 이름: ${state.team || "미입력"}
+- 탐방 날짜: ${state.date || "미입력"}
+- 오늘의 주제: ${state.theme || "미입력"}
+- 장소: 부산광역시 강서구 명지국제1로 161
+
+## 탐방 미션
+${checked}
+
+## 현장 기록
+${records}
+
+## 탐방 후 정리
+
+### 오늘 찾은 가장 의미 있는 자료
+${state.best || "미입력"}
+
+### 도서관이 지역사회에 주는 역할
+${state.role || "미입력"}
+
+### 다음 탐방에서 확인할 질문
+${state.next || "미입력"}
+`;
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `${state.date || "탐방"}_국회부산도서관_기록.md`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    function clearAll() {
+      if (!confirm("저장된 기록을 모두 지울까요?")) return;
+      localStorage.removeItem(storageKey);
+      location.reload();
+    }
+
+    load();
+  </script>
+</body>
+</html>
